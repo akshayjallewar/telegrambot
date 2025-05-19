@@ -2,6 +2,7 @@ package com.splitwithease.bot;
 
 import com.splitwithease.service.BotService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -12,6 +13,12 @@ public class SplitWithEaseBot extends TelegramLongPollingBot {
 
     @Autowired
     private BotService botService;
+    
+    @Value("${BOT_TOKEN}")
+    private String botToken;
+    
+    @Value("${BOT_USERNAME}")
+    private String botUserName;
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -30,11 +37,11 @@ public class SplitWithEaseBot extends TelegramLongPollingBot {
 
     @Override
     public String getBotUsername() {
-        return "splitwithease_bot"; // Replace with your actual bot username
+        return botUserName; // Replace with your actual bot username
     }
 
     @Override
     public String getBotToken() {
-        return "8121257287:AAEltpujBvtbVe--Wa6MB3tApc7XFAn6k6c"; // Replace with your actual bot token
+        return botToken;
     }
 }
